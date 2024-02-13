@@ -15,7 +15,7 @@ variable "arm_subscription_id" {
 
 variable "azure_resource_group" {
   type = string
-  default = env("TF_VAR_azure_resource_group")
+  default = "packer-multicloud"
 }
 
 variable "azure_region" {
