@@ -15,10 +15,6 @@ env:
   HCP_ORGANIZATION_ID: ${{ secrets.HCP_ORGANIZATION_ID }}
   HCP_BUCKET_NAME: "learn-packer-multicloud-hashicups"
 
-permissions:
-  id-token: write
-  contents: read
-
 jobs:
   build-artifact:
     name: Build
@@ -39,7 +35,7 @@ jobs:
       - name: 'Az CLI login'
         uses: azure/login@v1
         with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
+          creds: '{"clientId":"${{ secrets.ARM_CLIENT_ID }}","clientSecret":"${{ secrets.ARM_CLIENT_SECRET }}","subscriptionId":"${{ secrets.ARM_SUBSCRIPTION_ID }}","tenantId":"${{ secrets.ARM_TENANT_ID }}"}'
       
       - name: Azure CLI script
         uses: azure/CLI@v1
