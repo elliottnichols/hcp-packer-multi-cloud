@@ -53,6 +53,7 @@ source "azure-arm" "ubuntu-lts" {
   azure_tags = {
     dept = "Engineering"
     task = "Image deployment"
+    build_date = "${local.date}"
   }
 }
 
@@ -69,19 +70,15 @@ This is an image for HashiCups.
     }
   }
   
-  // source "source.amazon-ebs.ubuntu-lts" {
-  //   name = "hashicups"
-  // }
+  source "source.amazon-ebs.ubuntu-lts" {
+    name = "hashicups-ubuntu-jammy-22.04"
+  }
 
   source "source.azure-arm.ubuntu-lts" {
     name               = "hashicups"
     location           = var.azure_region
-    managed_image_name = "hashicups_${local.date}"
+    managed_image_name = "hashicups_ubuntu-jammy-22.04"
   }
-
-  // sources = [
-  //   "source.amazon-ebs.ubuntu-lts",
-  // ]
 
   # systemd unit for HashiCups service
   provisioner "file" {
