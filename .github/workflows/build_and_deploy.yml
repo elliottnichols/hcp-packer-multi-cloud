@@ -28,7 +28,7 @@ jobs:
       version_fingerprint: ${{ steps.hcp.outputs.version_fingerprint }}
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@4 # v4.0.0
+        uses: actions/checkout@v4 # v4.0.0
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
