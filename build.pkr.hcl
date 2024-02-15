@@ -15,24 +15,24 @@ locals {
   date = formatdate("HHmm", timestamp())
 }
 
-// source "amazon-ebs" "ubuntu-lts" {
-//   region = "us-east-2"
-//   source_ami_filter {
-//     filters = {
-//       virtualization-type = "hvm"
-//       name                = "ubuntu/images/hvm-ssd/ubuntu-jammy-22.04-amd64-server-*"
-//       root-device-type    = "ebs"
-//     }
-//     owners      = ["099720109477"]
-//     most_recent = true
-//   }
-//   instance_type  = "t2.small"
-//   ssh_username   = "ubuntu"
-//   ssh_agent_auth = false
+source "amazon-ebs" "ubuntu-lts" {
+  region = "us-east-2"
+  source_ami_filter {
+    filters = {
+      virtualization-type = "hvm"
+      name                = "ubuntu/images/hvm-ssd/ubuntu-jammy-22.04-amd64-server-*"
+      root-device-type    = "ebs"
+    }
+    owners      = ["099720109477"]
+    most_recent = true
+  }
+  instance_type  = "t2.small"
+  ssh_username   = "ubuntu"
+  ssh_agent_auth = false
 
-//   ami_name    = "hashicups_{{timestamp}}"
-//   ami_regions = ["us-west-1"]
-// }
+  ami_name    = "hashicups_{{timestamp}}"
+  ami_regions = ["us-east-2"]
+}
 
 source "azure-arm" "ubuntu-lts" {
   client_id                         = var.arm_client_id
@@ -90,11 +90,11 @@ This is an image for HashiCups.
   }
 
   # Set up HashiCups
-  provisioner "shell" {
-    scripts = [
-      "setup-deps-hashicups.sh"
-    ]
-  }
+  // provisioner "shell" {
+  //   scripts = [
+  //     "setup-deps-hashicups.sh"
+  //   ]
+  // }
 
   post-processor "manifest" {
     output     = "packer_manifest.json"

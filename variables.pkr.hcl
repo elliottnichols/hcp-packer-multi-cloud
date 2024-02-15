@@ -1,3 +1,13 @@
+variable "aws_access_key_id" {
+  type = string
+  default = env("AWS_ACCESS_KEY_ID")
+}
+
+variable "aws_secret_access_key" {
+  type = string
+  default = env("AWS_SECRET_ACCESS_KEY")
+}
+
 variable "arm_client_id" {
   type = string
   default = env("ARM_CLIENT_ID")
