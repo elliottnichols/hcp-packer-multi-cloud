@@ -23,7 +23,7 @@ env:
 jobs:
   build-artifact:
     name: Build
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     outputs:
       version_fingerprint: ${{ steps.hcp.outputs.version_fingerprint }}
     steps:
