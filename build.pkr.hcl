@@ -93,11 +93,11 @@ This is an image for HashiCups.
   //   ]
   // }
 
-  post-processor "manifest" {
-    output     = "packer_manifest.json"
-    strip_path = true
-    custom_data = {
-      version_fingerprint = packer.versionFingerprint
-    }
-  }
+  // post-processor "manifest" {
+  //   output     = "packer_manifest.json"
+  //   strip_path = true
+  //   custom_data = {
+  //     version_fingerprint = packer.versionFingerprint
+  //   }
+  // }
 }
