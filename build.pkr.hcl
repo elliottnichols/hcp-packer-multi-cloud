@@ -27,6 +27,7 @@ source "amazon-ebs" "ubuntu-lts" {
     most_recent = true
   }
   instance_type  = "t2.small"
+  temporary_key_pair_type = "ed25519"
   ssh_username   = "ubuntu"
   ssh_agent_auth = false
 
@@ -71,15 +72,15 @@ This is an image for HashiCups.
   }
   
   source "source.amazon-ebs.ubuntu-lts" {
-    name = "hashicups-ubuntu-jammy-22.04"
+    name = "hashicups_ubuntu-jammy-22.04"
   }
 
   source "source.azure-arm.ubuntu-lts" {
     name               = "hashicups"
     location           = var.azure_region
-    managed_image_name = "hashicups_ubuntu-jammy-22.04"
+    managed_image_name = "hashicups_ubuntu-jammy-22.04_${local.date}"
   }
-
+  
   # systemd unit for HashiCups service
   provisioner "file" {
     source      = "hashicups.service"
