@@ -61,13 +61,13 @@ source "azure-arm" "ubuntu-lts" {
 build {
   # HCP Packer settings
   hcp_packer_registry {
-    bucket_name = "learn-packer-multicloud-hashicups"
+    bucket_name = "multicloud-hashicups"
     description = <<EOT
 This is an image for HashiCups.
     EOT
 
     bucket_labels = {
-      "hashicorp-learn" = "learn-packer-multicloud-hashicups",
+      "multi-cloud" = "packer-multicloud-hashicups",
     }
   }
   
@@ -87,18 +87,18 @@ This is an image for HashiCups.
     destination = "/tmp/hashicups.service"
   }
 
-  # Set up HashiCups
-  // provisioner "shell" {
-  //   scripts = [
-  //     "setup-deps-hashicups.sh"
-  //   ]
-  // }
+  //Set up HashiCups
+  provisioner "shell" {
+    scripts = [
+      "setup-deps-hashicups.sh"
+    ]
+  }
 
-  // post-processor "manifest" {
-  //   output     = "packer_manifest.json"
-  //   strip_path = true
-  //   custom_data = {
-  //     version_fingerprint = packer.versionFingerprint
-  //   }
-  // }
+  post-processor "manifest" {
+    output     = "packer_manifest.json"
+    strip_path = true
+    custom_data = {
+      version_fingerprint = packer.versionFingerprint
+    }
+  }
 }
